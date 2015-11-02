@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>String method</title>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+
+            String.prototype.addToTag = function (tag_name, class_name) {
+                return '<' + tag_name + " class=" + class_name + '>' + this + '</' + tag_name + '>';
+            };
+
+            var str = new String("Hello, world!");
+            document.body.innerHTML = str.addToTag('h1', 'red');
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

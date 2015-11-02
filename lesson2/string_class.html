@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>String class</title>
+    <script>
+        function HTMLString(str)
+        {
+            this.str = str;
+
+            this.addText = function(str)
+            {
+                this.str += str;
+                return this.str;
+            };
+
+            this.addP = function(str, N)
+            {
+                if (N < 1 || N > 6)
+                    return null;
+
+                this.str += "<p>" + str + "</p>";
+                return this.str;
+            };
+
+            this.showHTML = function()
+            {
+                return this.str;
+            }
+        }
+
+        window.onload = function()
+        {
+            var myHTML = new HTMLString("Hello, World!");
+            myHTML.addText(" How are you?");
+            myHTML.addP("I miss you!");
+            document.body.innerHTML = myHTML.showHTML();
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

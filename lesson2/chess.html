@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chess</title>
+    <script>
+        function Chess()
+        {
+            var COLOR = 'red';
+
+            this.holder = document.getElementById('chess');
+            this.selectedCell = null;
+            this.selectedCellColor = null;
+
+            this.create = function()
+            {
+                var letters = ['a','b','c','d','e','f','g','h'];
+                var row = document.createElement('tr');
+                var cell = document.createElement('td');
+                row.appendChild(cell);
+
+                var i;
+
+                for (i = 0; i < 8; i++) {
+                    cell = document.createElement('td');
+                    cell.style.border = "solid 1px";
+                    cell.innerHTML = letters[i];
+                    row.appendChild(cell);
+                }
+
+                this.holder.appendChild(row);
+
+                for (i = 1; i <= 8; i++)
+                {
+                    row = document.createElement('tr');
+                    cell = document.createElement('td');
+                    cell.style.border = "solid 1px";
+                    cell.style.width = "20px";
+                    cell.innerHTML = i;
+                    row.appendChild(cell);
+
+                    for (var j = 0; j < 8; j++)
+                    {
+                        cell = document.createElement('td');
+                        cell.style.border = "solid 1px";
+                        cell.style.width = "40px";
+                        cell.style.height = "40px";
+                        cell.style.background = ((i+j) % 2) ? "black" : "white";
+                        cell.id = letters[j] + i;
+                        row.appendChild(cell);
+                    }
+
+                    this.holder.appendChild(row);
+                }
+            };
+
+            this.selectCell = function(cell)
+            {
+                if (this.selectedCell)
+                    this.selectedCell.style.background = this.selectedCellColor;
+
+                this.selectedCell = cell;
+                this.selectedCellColor = cell.style.background;
+                cell.style.background = COLOR;
+
+                document.getElementsByTagName('h1')[0].innerHTML = cell.id;
+            };
+
+            this.moveCell = function(key_code)
+            {
+                var next_id = 'a1';
+
+                if (this.selectedCell) {
+                    next_id = this.selectedCell.id;
+
+                    var col = next_id[0];
+                    var row = next_id[1];
+
+                    switch (key_code) {
+                        case 37:    //left
+                            if (col.charCodeAt(0) > 97)
+                                next_id = String.fromCharCode(col.charCodeAt(0) - 1) + row;
+                            break;
+                        case 38:    //up
+                            if (row > 1)
+                                next_id = col + (row - 1);
+                            break;
+                        case 39:    //right
+                            if (col.charCodeAt(0) < 104)
+                                next_id = String.fromCharCode(col.charCodeAt(0) + 1) + row;
+                            break;
+                        case 40:    //down
+                            if (row < 8)
+                                next_id = col + (+row + 1);
+                    }
+                }
+
+                var cell = document.getElementById(next_id);
+                this.selectCell(cell);
+            }
+        }
+
+        window.onload = function()
+        {
+            var chess = new Chess();
+
+            chess.create();
+
+            document.body.onkeydown = function(event)
+            {
+                if (event.keyCode < 37 || event.keyCode > 40)
+                    return;
+
+                chess.moveCell(event.keyCode);
+            }
+
+            chess.holder.onclick = function(event)
+            {
+                var target = event.target;
+
+                if (target.tagName == 'TD' && target.id != '')
+                {
+                    chess.selectCell(target);
+                }
+            };
+        }
+    </script>
+</head>
+<body>
+    <table id="chess" style="text-align: center; border-collapse: collapse">
+    </table>
+    <h1></h1>
+</body>
+</html>
