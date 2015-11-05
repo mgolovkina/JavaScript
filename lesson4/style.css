@@ -1,0 +1,37 @@
+li {
+    border: 1px solid darkgray;
+    display: inline-block;
+    padding: 5px;
+    background: lightyellow;
+}
+
+#main {
+    margin: 30px;
+}
+
+#cont {
+    position: relative;
+    top: -1px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 0;
+    border: 1px solid darkgray;
+    background: peachpuff;
+    position: absolute;
+    width: 550px;
+}
+
+.selected-tab {
+    background: peachpuff;
+}
+
+li:hover {
+    border: 1px solid lightcoral;
+    background: gold;
+}
