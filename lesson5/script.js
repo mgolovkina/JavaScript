@@ -1,23 +1,15 @@
 (function($){
     $(function(){
 
-    $('#submit').on('click', function(event) {
+    $('form').on('submit', function(event) {
         event.preventDefault();
+
+        var params = $(this).serializeArray();
 
         $('#result').load(
             "validator.php",
-
-            {
-                username: $('#username').val(),
-                password: $('#password').val(),
-                email: $('#email').val(),
-                gender: $('#gender').val(),
-                credit_card: $('#credit_card').val(),
-                bio: $('#bio').val()
-            },
-
+            params,
             function (data, textStatus) {
-                console.log(data);
                 if (data == 'true') {
                     $(this).css({'color': 'green'});
                     $(this).text("Form is valid");
