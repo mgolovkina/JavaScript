@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 5</title>
+    <style>
+        div {
+            margin: 10px;
+            padding: 5px;
+            width: inherit;
+        }
+        textarea {
+            display: block;
+        }
+        em {
+            margin: 10px;
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+    <script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+<form>
+    <div>
+        Username:
+        <input type="text" name="username">
+        <em></em>
+    </div>
+    <div>
+        Password:
+        <input type="text" name="password">
+        <em></em>
+    </div>
+    <div>
+        email:
+        <input type="email" name="email">
+        <em></em>
+    </div>
+    <div>
+        Gender:
+        <input type="text" name="gender">
+        <em></em>
+    </div>
+    <div>
+        Credit card:
+        <input type="text" name="credit_card">
+        <em></em>
+    </div>
+    <div>
+        Bio:
+        <textarea cols="60" rows="4" name="bio"></textarea>
+        <em></em>
+    </div>
+    <input type="submit" id="submit" value="Submit">
+</form>
+<p id="result"></p>
+</body>
+</html>
